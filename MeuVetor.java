@@ -65,6 +65,22 @@ public class MeuVetor {
         } 
         return aux;
     }
+    public boolean removeOcorrencia(double elemento){
+        if (estaVazio()) return false; // se não tem elementos, não tem como remover
+        boolean achou = false;
+        int i = 0;
+        // Passa pelo vetor
+        for(i = 0; i <= ultimaPos && !achou; i++){ //i menor igual a ultima posição e "não achou"
+            if (v[i] == elemento) achou = true;
+        }
+        if (!achou) return false;
+            //Se o elemento for igual ao indice do vetor
+        for (int ij = i; ij < ultimaPos; ij++){ //para cada indice do vetor
+            v[ij] = v[ij + 1]; //o indice atual será igual a numeração do próximo indice, passando os elementos após o vázio para trás
+        }
+        ultimaPos--; //reduz o numero da ultima posição em 1 para atualiza-la pois não há elemento após ela
+        return true;
+    }
 
     @Override
     public String toString(){
@@ -182,4 +198,5 @@ public class MeuVetor {
         // busca binária so funciona se o vetor tiver ordenado
         // esse return r armazena em r o valor de r, e o return r; retorna o valor de r, feita sempre que um vertor novo é criado, somente deixando na pilha de execução o que é necessário e liberando, não é estático
     }
+
 }
